@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The D. Edition — Birthday Issue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f8f1e6;--wine:#7d171b;--ink:#241b1b;--muted:#8c7770;--rose:#c98c83;--gold:#d4b27a}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{background:#211a19;color:var(--ink);font-family:"DM Sans",sans-serif}
+button{font:inherit}
+.magazine{width:100vw;height:100svh;min-height:520px;display:flex;flex-direction:column;background:var(--paper);overflow:hidden;position:relative}
+.masthead{height:74px;flex:0 0 74px;padding:8px 4.2%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:var(--paper);position:relative;z-index:5}
+.mast-side{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#806d64;line-height:1.7}
+.mast-side.right{text-align:right}
+.brand{font:700 clamp(31px,4vw,49px)/.95 "Playfair Display",serif;letter-spacing:-2px;color:var(--wine);text-align:center;white-space:nowrap}
+.brand i{font-weight:500;color:#b56c67}
+.mast-rule{height:1px;background:#d9c8b7;position:absolute;bottom:0;left:4.2%;right:4.2%}
+.ticker{height:23px;flex:0 0 23px;overflow:hidden;background:var(--wine);color:#fff5e9;display:flex;align-items:center}
+.ticker-track{display:flex;white-space:nowrap;animation:marquee 30s linear infinite;font-size:8px;letter-spacing:3px;text-transform:uppercase}
+.ticker-track span{padding-right:45px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.pages{position:relative;flex:1;min-height:0;overflow:hidden;background:var(--paper)}
+.page{position:absolute;inset:0;display:none;overflow:hidden}
+.page.active{display:block;animation:fadeIn .5s ease both}
+@keyframes fadeIn{from{opacity:.45;transform:scale(1.008)}to{opacity:1;transform:scale(1)}}
+.page-number{position:absolute;right:3.7%;bottom:15px;font:italic 12px "Playfair Display",serif;color:#9e8980;z-index:4}
+.nav{height:48px;flex:0 0 48px;display:flex;align-items:center;justify-content:space-between;padding:0 4.2%;background:var(--paper);border-top:1px solid #e1d2c3;z-index:5}
+.nav-btn{border:0;background:transparent;color:var(--wine);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:10px 0;cursor:pointer}
+.nav-btn:disabled{opacity:.25;cursor:default}
+.progress-wrap{width:min(240px,35vw)}
+.progress-label{display:flex;justify-content:space-between;font-size:8px;letter-spacing:1.5px;color:#927d74;margin-bottom:5px;text-transform:uppercase}
+.progress{height:2px;background:#e5d6c9}
+.progress span{height:100%;width:33.33%;display:block;background:var(--wine);transition:width .4s}
+.footer{height:18px;flex:0 0 18px;padding:0 4.2%;display:flex;justify-content:space-between;align-items:center;background:var(--paper);color:#a38d82;font-size:7px;letter-spacing:2px;text-transform:uppercase}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.photo{position:relative;overflow:hidden;background:linear-gradient(135deg,#e9d9cb,#d5b9ac);min-height:0;min-width:0}
+.photo img{transition:transform .8s ease}
+.photo:hover img{transform:scale(1.04)}
+.photo img:not([src]),.photo img[src=""]{display:none}
+.photo:has(img[style*="display: none"])::before,.photo:has(img:not([src]))::before{content:"ADD PHOTO";position:absolute;inset:0;display:grid;place-items:center;color:#a78c7d;font-size:8px;letter-spacing:3px}
+.photo:after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,rgba(20,12,12,.28));pointer-events:none}
+.photo-label{position:absolute;z-index:2;bottom:10px;left:12px;color:white;font:italic 11px "Playfair Display",serif;letter-spacing:1px}
+
+/* COVER */
+.cover{background:var(--paper)}
+.cover-hero{position:absolute;inset:0 0 0 0;display:grid;grid-template-columns:39% 1fr;gap:0}
+.cover-image{position:relative;overflow:hidden;background:#d9c5b5;order:2}
+.cover-image img{object-position:center 28%;filter:saturate(.86)}
+.cover-image:after{content:"";position:absolute;inset:0;background:linear-gradient(270deg,rgba(22,14,13,.03),rgba(22,14,13,.05) 70%,rgba(22,14,13,.18))}
+.cover-copy{display:none}
+.cover-sticker{position:absolute;right:5%;bottom:9%;width:112px;height:112px;border:1px solid rgba(212,178,122,.7);border-radius:50%;display:grid;place-items:center;text-align:center;color:var(--wine);font-size:8px;letter-spacing:2px;text-transform:uppercase;transform:rotate(12deg);z-index:3;background:rgba(248,241,230,.85)}
+.cover-side{position:relative;background:#f1e6d6;display:flex;flex-direction:column;justify-content:center;padding:6% 8%;order:1}
+.cover-side:before{content:"";position:absolute;inset:12px;border:1px solid #d7c3a9;pointer-events:none}
+.cover-side .mini-kicker{font-size:8px;letter-spacing:3px;color:#9a7167;text-transform:uppercase}
+.cover-side h2{font:italic 500 clamp(32px,4vw,58px)/1.02 "Playfair Display",serif;color:var(--wine);margin:18px 0}
+.cover-side p{font:12px/1.8 "Playfair Display",serif;color:#78655d;max-width:240px}
+.cover-side .cover-sign{font:italic 25px "Playfair Display",serif;color:#9b4945;margin-top:24px}
+.cover-side .issue{position:absolute;bottom:8%;left:12%;font-size:8px;letter-spacing:2px;color:#927b70;text-transform:uppercase}
+
+/* PHOTO STORY — edge-to-edge collage with moving side photo ribbon */
+.spread{height:100%;padding:3.2% 4.2%;display:grid;grid-template-columns:1fr 190px;gap:18px;background:#f8f1e6}
+.spread-main{min-width:0;display:flex;flex-direction:column}
+.spread-heading{height:76px;flex:0 0 76px;display:flex;align-items:end;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid #d8c8b7}
+.spread-heading .kicker{font-size:8px;letter-spacing:3px;color:#9b7468;text-transform:uppercase;margin-bottom:7px}
+.spread-heading h2{font:500 clamp(28px,3.4vw,46px)/.95 "Playfair Display",serif;color:var(--wine);margin:0}
+.spread-heading h2 em{font-weight:500;color:#b77d75}
+.spread-heading .tiny{font:italic 12px "Playfair Display",serif;color:#927e74;text-align:right;max-width:160px}
+.collage{flex:1;min-height:0;display:grid;grid-template-columns:1.08fr .82fr 1fr;grid-template-rows:repeat(2,minmax(0,1fr));gap:8px;padding-top:12px}
+.collage .c1{grid-column:1;grid-row:1/3;min-height:0}
+.collage .c2{grid-column:2;grid-row:1;min-height:0}
+.collage .c3{grid-column:2;grid-row:2;min-height:0}
+.collage .c4{grid-column:3;grid-row:1/3;min-height:0}
+.collage .c1 img{object-position:center 35%}
+.collage .c2 img{object-position:center 32%}
+.collage .c3 img{object-position:center 32%}
+.collage .c4 img{object-position:center 72%}
+.collage .c5{display:none}
+.photo-ribbon{position:relative;overflow:hidden;border-left:1px solid #ddcbbb;padding-left:14px}
+.ribbon-track{position:absolute;left:14px;right:0;top:0;display:flex;flex-direction:column;gap:8px;animation:verticalScroll 23s linear infinite}
+.ribbon-track:hover{animation-play-state:paused}
+.ribbon-photo{height:175px;flex:0 0 175px;position:relative;overflow:hidden;background:#e4d1c4}
+.ribbon-photo img{object-fit:cover}
+.ribbon-caption{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#9a8076;padding-top:6px}
+@keyframes verticalScroll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.spread-foot{height:24px;flex:0 0 24px;display:flex;justify-content:space-between;align-items:end;color:#9a847a;font-size:7px;letter-spacing:2px;text-transform:uppercase}
+
+/* EDITORIAL FEATURE */
+.feature{height:100%;min-height:0;padding:2.8% 4.2% 30px;display:grid;grid-template-columns:.78fr 1.6fr 190px;gap:18px;background:#f5eee4;position:relative}
+.feature-copy{display:flex;flex-direction:column;justify-content:space-between;min-width:0;min-height:0;padding:8px 0 5px}
+.feature-copy .kicker{font-size:8px;letter-spacing:3px;color:#9b7468;text-transform:uppercase}
+.feature-copy h2{font:500 clamp(38px,5.2vw,70px)/.92 "Playfair Display",serif;color:var(--wine);margin:20px 0}
+.feature-copy h2 em{color:#bb8077}
+.feature-copy p{font:italic 13px/1.8 "Playfair Display",serif;color:#88746c;max-width:230px}
+.favourites{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.favourites span{padding:6px 8px;border:1px solid #d9c6b5;border-radius:30px;font-size:7px;letter-spacing:1px;text-transform:uppercase;color:#866d64}
+.feature-collage{min-width:0;min-height:0;height:100%;display:grid;grid-template-columns:1.1fr .9fr;grid-template-rows:repeat(2,minmax(0,1fr));gap:8px}
+.feature-collage .f1{grid-row:1/3;min-height:0}
+.feature-collage .f2{grid-column:2;grid-row:1;min-height:0}
+.feature-collage .f3{grid-column:2;grid-row:2;min-height:0}
+.feature-collage .f1 img{object-position:center 28%}
+.feature-collage .f2 img{object-position:center 35%}
+.feature-collage .f3 img{object-position:center 30%}
+.feature-ribbon{position:relative;overflow:hidden;border-left:1px solid #ddcbbb;padding-left:14px}
+.feature-ribbon .ribbon-track{left:14px}
+.feature-bottom{position:absolute;left:4.2%;right:4.2%;bottom:8px;display:flex;justify-content:space-between;font-size:7px;letter-spacing:2px;color:#9a847a;text-transform:uppercase;pointer-events:none}
+@media(max-width:760px){
+ .masthead{height:60px;flex-basis:60px;padding:6px 4%}.mast-side{font-size:6px;letter-spacing:1px}.brand{font-size:29px}
+ .ticker{height:20px;flex-basis:20px}.nav{height:43px;flex-basis:43px}.footer{height:15px;flex-basis:15px;font-size:6px}
+ .cover-hero{grid-template-columns:1fr}.cover-image{position:relative;min-height:45%}.cover-side{padding:6% 7%}
+ .cover-copy{display:none}.cover-sticker{width:78px;height:78px;font-size:6px;right:4%;bottom:auto;top:10px}
+ .spread{padding:4% 4%;grid-template-columns:1fr;gap:0}.photo-ribbon{display:none}.spread-heading{height:64px;flex-basis:64px}.spread-heading .tiny{font-size:9px}
+ .collage{grid-template-columns:1fr 1fr;grid-template-rows:repeat(2,minmax(0,1fr));gap:6px}.collage .c1{grid-column:1;grid-row:1}.collage .c2{grid-column:2;grid-row:1}.collage .c3{grid-column:1;grid-row:2}.collage .c4{grid-column:2;grid-row:2}
+ .feature{padding:4% 4% 24px;grid-template-columns:.75fr 1.25fr;gap:10px}.feature-ribbon{display:none}.feature-copy h2{font-size:clamp(34px,8vw,54px)}.feature-copy p{font-size:11px}.favourites{gap:4px}.favourites span{font-size:6px;padding:5px 6px}
+ .feature-collage{min-height:0;height:100%}
+ .feature-bottom{bottom:6px;left:4%;right:4%;font-size:6px}
+}
+@media(max-height:620px) and (min-width:761px){
+ .masthead{height:58px;flex-basis:58px}.cover-copy{top:5%}.cover-title{font-size:clamp(60px,10vw,140px)}
+ .spread{padding-top:2%;padding-bottom:2%}.spread-heading{height:60px;flex-basis:60px}.ribbon-photo{height:140px;flex-basis:140px}
+ .feature{padding-top:2%;padding-bottom:2%}
+}
+</style>
+</head>
+<body>
+<main class="magazine">
+<header class="masthead">
+ <div class="mast-side">The birthday release<br>November 13 · 2026</div>
+ <div class="brand">THE <i>D.</i> EDITION</div>
+ <div class="mast-side right">A special issue<br>Vol. 01 · No. 13</div>
+ <div class="mast-rule"></div>
+</header>
+<div class="ticker"><div class="ticker-track">
+ <span>THE GIRL OF THE MOMENT ✦ THE BIRTHDAY ISSUE ✦ BORN TO SHINE ✦ DARSHIKA, IN EVERY FRAME ✦ NOVEMBER 13 ✦</span>
+ <span>THE GIRL OF THE MOMENT ✦ THE BIRTHDAY ISSUE ✦ BORN TO SHINE ✦ DARSHIKA, IN EVERY FRAME ✦ NOVEMBER 13 ✦</span>
+</div></div>
+
+<section class="pages">
+ <article class="page cover active" id="page-1">
+  <div class="cover-hero">
+   <aside class="cover-side">
+    <div class="mini-kicker">A birthday special</div>
+    <h2>Young.<br>Fearless.<br><i>Unforgettable.</i></h2>
+    <p>A new chapter of laughter, little adventures, favourite things and beautiful memories.</p>
+    <div class="cover-sign">Darshika</div>
+    <div class="issue">The D. Edition · 2026</div>
+   </aside>
+   <div class="cover-image"><img src="assets/photos/photo-02.png" alt="Darshika cover portrait" onerror="this.style.display='none'"></div>
+   <div class="cover-sticker">The girl<br>of the<br>moment ✦</div>
+  </div>
+  <span class="page-number">01</span>
+ </article>
+
+ <article class="page" id="page-2">
+  <div class="spread">
+   <div class="spread-main">
+    <div class="spread-heading">
+     <div><div class="kicker">The photo diary · 01</div><h2>Life lately, <em>in frames.</em></h2></div>
+     <div class="tiny">The moments<br>that feel like her.</div>
+    </div>
+    <div class="collage">
+     <figure class="photo c1"><img src="assets/photos/photo-01.jpeg" alt="Photo diary one" onerror="this.style.display='none'"><figcaption class="photo-label">The days to remember</figcaption></figure>
+     <figure class="photo c2"><img src="assets/photos/photo-03.png" alt="Photo diary two" onerror="this.style.display='none'"></figure>
+     <figure class="photo c3"><img src="assets/photos/photo-04.png" alt="Photo diary three" onerror="this.style.display='none'"></figure>
+     <figure class="photo c4"><img src="assets/photos/photo-02.png" alt="Photo diary four" onerror="this.style.display='none'"><figcaption class="photo-label">A thousand little stories</figcaption></figure>
+    </div>
+    <div class="spread-foot"><span>Unfiltered & unforgettable</span><span>Darshika · 2026</span></div>
+   </div>
+   <aside class="photo-ribbon">
+    <div class="ribbon-track">
+     <div class="ribbon-photo"><img src="assets/photos/photo-06.jpeg" alt="Moving photo one" onerror="this.style.display='none'"></div>
+     <div class="ribbon-photo"><img src="assets/photos/photo-07.png" alt="Moving photo two" onerror="this.style.display='none'"></div>
+     <div class="ribbon-photo"><img src="assets/photos/photo-08.jpeg" alt="Moving photo three" onerror="this.style.display='none'"></div>
+     <div class="ribbon-photo"><img src="assets/photos/photo-05.png" alt="Moving photo one repeat" onerror="this.style.display='none'"></div>
+     <div class="ribbon-photo"><img src="assets/photos/photo-07.png" alt="Moving photo two repeat" onerror="this.style.display='none'"></div>
+     <div class="ribbon-photo"><img src="assets/photos/photo-08.jpeg" alt="Moving photo three repeat" onerror="this.style.display='none'"></div>
+    </div>
+    <div class="ribbon-caption">A moving little archive ✦</div>
+   </aside>
+  </div>
+  <span class="page-number">02</span>
+ </article>
+
+ <article class="page" id="page-3">
+  <div class="feature">
+   <div class="feature-copy">
+    <div>
+     <div class="kicker">The girl, the vibe · 02</div>
+     <h2>Her kind<br>of <em>magic.</em></h2>
+     <p>A soft heart, a little chaos, an artistic soul and a playlist that always deserves one more song.</p>
+     <div class="favourites"><span>Art</span><span>KitKat</span><span>YJHD</span><span>Guitar</span><span>Music</span></div>
+    </div>
+    <div class="kicker">One of one. Always.</div>
+   </div>
+   <div class="feature-collage">
+    <figure class="photo f1"><img src="assets/photos/photo-07.png" alt="Darshika portrait" onerror="this.style.display='none'"><figcaption class="photo-label">The birthday girl</figcaption></figure>
+    <figure class="photo f2"><img src="assets/photos/photo-01.jpeg" alt="Darshika candid" onerror="this.style.display='none'"></figure>
+    <figure class="photo f3"><img src="assets/photos/photo-04.png" alt="Darshika memory" onerror="this.style.display='none'"></figure>
+   </div>
+   <aside class="feature-ribbon">
+    <div class="ribbon-track">
+     <div class="ribbon-photo"><img src="assets/photos/photo-03.png" alt="Photo strip one" onerror="this.style.display='none'"></div>
+     <div class="ribbon-photo"><img src="assets/photos/photo-06.jpeg" alt="Photo strip two" onerror="this.style.display='none'"></div>
+     <div class="ribbon-photo"><img src="assets/photos/photo-08.jpeg" alt="Photo strip three" onerror="this.style.display='none'"></div>
+     <div class="ribbon-photo"><img src="assets/photos/photo-03.png" alt="Photo strip one repeat" onerror="this.style.display='none'"></div>
+     <div class="ribbon-photo"><img src="assets/photos/photo-05.png" alt="Photo strip two repeat" onerror="this.style.display='none'"></div>
+     <div class="ribbon-photo"><img src="assets/photos/photo-05.png" alt="Photo strip three repeat" onerror="this.style.display='none'"></div>
+    </div>
+   </aside>
+   <div class="feature-bottom"><span>THE DARSHIKA EDITION</span><span>HAPPY BIRTHDAY · 13.11.26</span></div>
+  </div>
+  <span class="page-number">03</span>
+ </article>
+</section>
+
+<nav class="nav">
+ <button class="nav-btn" id="prevBtn" onclick="prevPage()" disabled>← Previous</button>
+ <div class="progress-wrap"><div class="progress-label"><span id="pageIndicator">Page 01 / 03</span><span id="percent">33%</span></div><div class="progress"><span id="progressBar"></span></div></div>
+ <button class="nav-btn" id="nextBtn" onclick="nextPage()">Next page →</button>
+</nav>
+<footer class="footer"><span>The D. Edition</span><span>Made of memories</span><span>Birthday issue · 2026</span></footer>
+</main>
+<script>
+let currentPage=1;
+const totalPages=document.querySelectorAll(".page").length;
+function showPage(n){
+ currentPage=Math.max(1,Math.min(totalPages,n));
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(`page-${currentPage}`).classList.add("active");
+ const pct=Math.round(currentPage/totalPages*100);
+ document.getElementById("pageIndicator").textContent=`Page ${String(currentPage).padStart(2,"0")} / ${String(totalPages).padStart(2,"0")}`;
+ document.getElementById("percent").textContent=`${pct}%`;
+ document.getElementById("progressBar").style.width=`${pct}%`;
+ document.getElementById("prevBtn").disabled=currentPage===1;
+ document.getElementById("nextBtn").disabled=currentPage===totalPages;
+}
+function nextPage(){showPage(currentPage+1)}
+function prevPage(){showPage(currentPage-1)}
+document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"||e.key==="PageDown")nextPage();if(e.key==="ArrowLeft"||e.key==="PageUp")prevPage()});
+let startX=0;
+document.querySelector(".pages").addEventListener("touchstart",e=>startX=e.changedTouches[0].screenX,{passive:true});
+document.querySelector(".pages").addEventListener("touchend",e=>{const d=e.changedTouches[0].screenX-startX;if(Math.abs(d)>50)d<0?nextPage():prevPage()},{passive:true});
+showPage(1);
+</script>
+</body>
+</html>
